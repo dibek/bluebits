@@ -1,0 +1,36 @@
+Tools I
+
+At the moment I am not using Git but Subversion because my collegues are more used to that system
+I starting to use git for personal use when I set up my Github account.
+I found managing conflict with git much more logical even if not so easy to learn.
+
+The question you ask could be related to a problem of eol seen so many files involved.
+I never saw such problem in subversion but I imagine that can happen using mixed environments unix/windows
+
+There is the possibility of ignoring the eol or resetting it.
+
+
+Tools II
+
+I don't really hate Maven, but I have to say it is not the easiest way of setting up a project.
+I imagine other system as gradle are much easier to configurate especially considering the multi environments needs
+I used in the past also Ant and Maven it is better for dependencies but Ant was much better (or easier) for multi env configurations
+
+
+Opinion I
+
+I think that the new trend of ATDD changed and will change even more in the future the approach of developing the 
+software really needed, reducing misunderstanding and useless code.
+Also the stress that you can change languages without worrying too much is a really interesting opportunity
+Cucumber has been great in this but not just this framework.
+The second thing is the Cloud Remote management and in this case Puppet it is a winning solution
+
+Opinion II
+
+Java can be ready for the new millenium. The question is if the programmers using it are ready.
+The tools and framework related to java are still a step ahead in a lot of fields, but I expect that other languages based on the JVM
+will increase a lot in the future (As Scala)
+At the same time languages ad Erlang or Ruby or Python will increase in specific sectors. The future will be the easy integration of different
+languages , frameworks , environments using a micro services approach. The monolithic applications will die soon.
+
+

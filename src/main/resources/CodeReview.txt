@@ -1,0 +1,18 @@
+	public LinkedList getOfflineDevicesForUser(User user, boolean debug) {
+			ArrayList l = new ArrayList();        // Id using Java5+ better using generics
+			List allDevices = deviceRepository.getAll();        
+			for (int x=0; ; allDevices.size() ; x++) {         // better to use the iterator of collections  so if using generic: (Device device: allDevices) {}   
+				boolean found = false;            
+				List owners = ((Device) allDevices.get(x)).getOwners();        // so you have already the Device object at this point    
+				if (owners.size() > 0) {                
+					for (int y = 0; y < owners.size(); y++) {          // also int this case better to use the iterator so if using generic: (Owner owner: owners) {}         
+						User owner = (User) owners.get(x);                    
+						found = (owner == user);                }               
+					if (found && allDevices != null)                    
+						l.add(allDevices.get(x));            }       
+				}        
+			return new LinkedList(l);    // why using this conversion and not directly the LinkedList?
+		}
+		
+		
+		
