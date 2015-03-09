@@ -1,14 +1,14 @@
 	public LinkedList getOfflineDevicesForUser(User user, boolean debug) {
-			ArrayList l = new ArrayList();        // Id using Java5+ better using generics
+			ArrayList l = new ArrayList();        // Id using Java5+ better using generics. I don;t like variable names that don't explain themselves. But it is personal taste.
 			List allDevices = deviceRepository.getAll();        
 			for (int x=0; ; allDevices.size() ; x++) {         // better to use the iterator of collections  so if using generic: (Device device: allDevices) {}   
 				boolean found = false;            
 				List owners = ((Device) allDevices.get(x)).getOwners();        // so you have already the Device object at this point    
-				if (owners.size() > 0) {                
-					for (int y = 0; y < owners.size(); y++) {          // also int this case better to use the iterator so if using generic: (Owner owner: owners) {}         
+				if (owners.size() > 0) {                // using the other iterator we don't need to check the owner size
+					for (int y = 0; y < owners.size(); y++) {          // also in this case better to use the iterator so if using generic: (Owner owner: owners) {}         
 						User owner = (User) owners.get(x);                    
-						found = (owner == user);                }               
-					if (found && allDevices != null)                    
+						found = (owner == user);                }      // This equal it is wrong . It is important having an equals method that override properly the Object equals         
+					if (found && allDevices != null)                // Why checking here if allDevices is null?. It doesen't make sense. If it is null you cannot reach this point     
 						l.add(allDevices.get(x));            }       
 				}        
 			return new LinkedList(l);    // why using this conversion and not directly the LinkedList?
@@ -16,3 +16,22 @@
 		
 		
 		
+		
+		
+		
+		I can also suggest this rewrite:
+		
+		
+		public LinkedList getOfflineDevicesForUser(User user, boolean debug) {
+			ArrayList finalDevices new ArrayList<Device>();
+			List<Device> allDevices = deviceRepository.getAll();
+			
+			for (Device device : allDevices) {
+				List<User> owners = device.getOwners();
+				if ( owners.contains(user) ) {
+					finalDevices.add(device);
+				}
+			}
+			return new LinkedList(finalDevices);
+		
+		}

@@ -4,13 +4,15 @@ import java.util.Arrays;
 
 /**
  * I am not using sorting because in the doc provided they don't talk about it
+ * 
  * @author giuseppe
  *
  */
 public class ArraySearch {
 
 	/**
-	 * I am not using ordering because in the doc provided they don't talk about it
+	 * I am not using ordering because in the doc provided they don't talk about
+	 * it
 	 * 
 	 * In case of big array this method is much faster
 	 * 
@@ -21,12 +23,17 @@ public class ArraySearch {
 	public int findPosArraysBinarySearch(int[] firstArray, int[] secondArray) {
 		int pos = 0;
 
-		int a = Arrays.binarySearch(firstArray, secondArray[0]);
-		if (a > 0) {
-			pos = a;
-
+		int posSec = 0;
+		for (int sec : secondArray) {
+			int a = Arrays.binarySearch(firstArray,sec);
+			if (posSec == 0 && a > 0) {
+				pos = a;
+			}
+			if (a < 0) {
+				pos = -1;
+			}
+			posSec++;
 		}
-
 		return pos;
 	}
 
@@ -41,15 +48,22 @@ public class ArraySearch {
 		int pos = 0;
 
 		int intPos = 0;
-		mainLoop: for (int valFir : firstArray) {
+		int posSec = 0;
+		for (int sec : secondArray) {
+			intPos = 0;
+			fistArrayLoop: for (int valFir : firstArray) {
 
-			if (secondArray[0] == valFir) {
-				pos = intPos;
-				break mainLoop;
+				if (sec == valFir && posSec == 0) {
+					pos = intPos;
+					// break mainLoop;
+				}
+				if (sec != valFir &&  intPos > pos && posSec > 0) {
+					pos = -1;
+				}
+				intPos++;
 			}
-			intPos++;
+		posSec++;
 		}
-
 		return pos;
 	}
 
